@@ -188,7 +188,7 @@ export default function ProductList() {
                     <div className="flex items-center gap-3">
                       {product.image ? (
                         <img 
-                          src={product.image.startsWith('http') ? product.image : `${API_URL}/${product.image}`} 
+                          src={product.image.startsWith('http') || product.image.startsWith('data:') ? product.image : `${API_URL}/${product.image}`}
                           alt={product.name} 
                           className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl object-cover border border-slate-700 shrink-0" 
                         />
