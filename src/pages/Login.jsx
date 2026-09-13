@@ -34,10 +34,10 @@ const Login = () => {
 
     try {
       // Live backend URL updated here
-      const response = await axios.post("https://shop-co-backend-sigma.vercel.app/api/auth/login", {
-        email: formData.email,
-        password: formData.password,
-      });
+      const response = await axios.post("https://shop-co-backend-sigma.vercel.app/auth/admin/login", {
+  email: formData.email,
+  password: formData.password,
+});
 
       localStorage.setItem("token", response.data.token);
       localStorage.setItem("role", response.data.user.role);
