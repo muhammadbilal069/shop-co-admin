@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { ShoppingCart, Clock, CheckCircle2, Truck, XCircle } from 'lucide-react';
+import { Clock } from 'lucide-react';
 
 export default function OrderList() {
   const [orders, setOrders] = useState([]);
@@ -35,7 +35,6 @@ export default function OrderList() {
 
   return (
     <div className="p-4 sm:p-6 lg:p-8 bg-[#0f172a] min-h-screen text-slate-200">
-      {/* Header */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
         <h1 className="text-xl sm:text-2xl font-bold">Order Management</h1>
         <span className="text-xs bg-emerald-500/15 text-emerald-400 px-3 py-1.5 rounded-lg border border-emerald-500/20 font-medium">
@@ -43,7 +42,6 @@ export default function OrderList() {
         </span>
       </div>
 
-      {/* Table Container with Horizontal Scroll for Small Screens */}
       <div className="overflow-x-auto bg-[#1e293b] rounded-2xl shadow-xl border border-slate-800">
         <table className="w-full text-left border-collapse min-w-[700px]">
           <thead>
@@ -51,7 +49,7 @@ export default function OrderList() {
               <th className="py-3 sm:py-4 px-4 sm:px-6">Order ID</th>
               <th className="py-3 sm:py-4 px-4 sm:px-6">Customer</th>
               <th className="py-3 sm:py-4 px-4 sm:px-6">Items Count</th>
-              <th className="py-3 sm:py-4 px-4 sm:px-6">Total Price</th>
+              <th className="py-3 sm:py-4 px-4 sm:px-6">Total Amount</th>
               <th className="py-3 sm:py-4 px-4 sm:px-6">Status</th>
               <th className="py-3 sm:py-4 px-4 sm:px-6 text-center">Actions / Update</th>
             </tr>
@@ -68,14 +66,14 @@ export default function OrderList() {
                     #{order._id.slice(-6)}
                   </td>
                   <td className="py-3 sm:py-4 px-4 sm:px-6">
-                    <div className="font-semibold text-slate-200">{order.user?.name || 'Guest User'}</div>
-                    <div className="text-[11px] sm:text-xs text-slate-500">{order.user?.email || 'No email'}</div>
+                    <div className="font-semibold text-slate-200">{order.customerName || 'Guest User'}</div>
+                    <div className="text-[11px] sm:text-xs text-slate-500">{order.email || 'No email'}</div>
                   </td>
                   <td className="py-3 sm:py-4 px-4 sm:px-6 text-slate-300">
                     {order.orderItems?.length || 0} items
                   </td>
                   <td className="py-3 sm:py-4 px-4 sm:px-6 font-mono font-semibold text-emerald-400">
-                    ${order.totalPrice}
+                    ${order.totalAmount}
                   </td>
                   <td className="py-3 sm:py-4 px-4 sm:px-6">
                     <span className={`px-2.5 sm:px-3 py-1 text-[11px] sm:text-xs rounded-full font-medium inline-flex items-center gap-1.5 ${
